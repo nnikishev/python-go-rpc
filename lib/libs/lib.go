@@ -5,15 +5,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"os"
 
 	"github.com/imroc/req/v3"
 )
 
 func GetRequestToken() (token string, err error) {
+	username := os.Getenv("SYSTEM_USER")
+	password := os.Getenv("SYSTEM_USER_PASSWORD")
+	url := os.Getenv("AUTH_TOKEN_URL")
 	client := req.C().DevMode()
 	postBody, _ := json.Marshal(map[string]string{
-		"username": "admin",
-		"password": "admin",
+		"username": username,
+		"password": password,
 	})
 	requestBody := bytes.NewBuffer(postBody)
 	r, err := client.R().
@@ -24,7 +28,7 @@ func GetRequestToken() (token string, err error) {
 			"X-CSRFTOKEN":  "BMwdKEdnRpZxlDW4GGO3DUGYSlMyfgAZUlA1RgTOcFPJytopuAeQp9LXDzciHV2S",
 		}).
 		SetBody(requestBody).
-		Post("http://192.168.32.101:8084/api/auth/login/")
+		Post(url)
 	if err != nil {
 		panic(err.Error())
 	}
