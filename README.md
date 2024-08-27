@@ -1,6 +1,7 @@
 # Python-Golang RPC
 
-my own expirience with database executor on golang with rpc call from python
+My own experience with database execution in golang with rpc call from python
+Working with large queries better than SQLAlchemy (2x, 3x Faster)
 
 # Variables
 
