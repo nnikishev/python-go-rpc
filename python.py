@@ -9,8 +9,8 @@ start = time.perf_counter()
 
 responce_query = (rpc("App.MakeRequest", (
     "postgres", 
-    "host=192.168.32.100 user=sppradmin dbname=etl_datamart sslmode=disable password=TQmGSShiqv_rNUVPeT06", 
-    "select * from pden_vol_summary_fact",
+    "host=localhost user=nikolay dbname=bi sslmode=disable password=12345", 
+    "select * from bi_charts",
     "0",
     "0")))
 rpc.close()
