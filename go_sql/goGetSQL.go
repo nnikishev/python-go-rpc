@@ -7,8 +7,6 @@ import (
 	"net/rpc"
 	"strconv"
 
-	lib "github.com/owner/root/lib/libs"
-
 	_ "github.com/lib/pq"
 	"github.com/spiral/goridge"
 )
@@ -132,11 +130,11 @@ func makeResponse(rows *sql.Rows, data_types []map[string]string, limit string) 
 }
 
 func (s *App) MakeRequest(args [5]string, responce *map[string]interface{}) error {
-	token, err := lib.GetRequestToken()
-	if err != nil {
-		fmt.Println(err)
-		// panic(err.Error())
-	}
+	// token, err := lib.GetRequestToken()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// panic(err.Error())
+	// }
 	db, err := initDBConnection(args[0], args[1])
 	if err != nil {
 		fmt.Println(err)
@@ -157,7 +155,7 @@ func (s *App) MakeRequest(args [5]string, responce *map[string]interface{}) erro
 		// maps.Copy(data, temp)
 	}
 	data["count"] = count
-	data["token"] = token
+	// data["token"] = token
 	*responce = data
 	defer rows.Close()
 	defer db.Close()
